@@ -20,8 +20,8 @@ readInterface.on('line', (line) =>
     .on('close', () => {
       splitData(data);
       makeMoves(directions);
-      console.log(robotPosition);
-      console.log(numOfDirtMoundsCleaned);
+      console.log(`Final Robot Position: ${robotPosition[0]}, ${robotPosition[1]}`);
+      console.log("Number of Dirt Mounds Cleaned: ", numOfDirtMoundsCleaned);
     });
 
 const splitData = (txt) =>{
@@ -30,14 +30,14 @@ const splitData = (txt) =>{
     roomDimensions = data[0].split(' ').map((string)=> parseInt(string));
 
     //Starting location is the second line of the text input.
-    robotPosition = data[1].split(' ').map((string)=> parseInt(string));
+    robotPosition = data[data.length-2].split(' ').map((string)=> parseInt(string));
  
     //Directions are always on the last line of the text input.
     directions = data[data.length-1].split('');
 
     //Dirt locations are between the second line and the last line (can be zero or many).
     if(data.length > 3){
-        dirtLocations = data.slice(2, data.length-1);
+        dirtLocations = data.slice(1, data.length-2);
     }
 }
 
