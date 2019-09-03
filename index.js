@@ -1,5 +1,9 @@
 /*
- * CLI Program that takes room data from a text file
+ * CLI program that takes room dimensions, locations of dirt patches, a hoover location and driving instructions as input and outputs the following:
+ *  - The final hoover position (X, Y)
+ *  - The number of patches of dirt the robot cleaned up
+ *  - Graphical representations of rooms before and after being cleaned by the robot
+ * @author Jae Park
  */
 
 // Modules
