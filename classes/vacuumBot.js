@@ -3,7 +3,7 @@
  */
 class VacuumBot {
   /**
-   * Creates an instance of VacuumBot
+   * Creates an instance of VacuumBot.
    * @constructor
    * @param roomData An Object containing room data.
    */
@@ -16,7 +16,7 @@ class VacuumBot {
   }
 
   /**
-   * Cleans the room it is placed in using stored room data, updating room data as it goes.
+   * Cleans the room stored in memory while updating room data.
    */
   cleanRoom() {
     this.directions.forEach(move => {

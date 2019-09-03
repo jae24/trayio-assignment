@@ -19,7 +19,6 @@ const data = [];
 const roomGridLegend =
   "[ (D) - dirt mound | (R) - robot location | (.) - empty space ]";
 
-// Parses text file to extract room data
 const textFileReader = readline.createInterface({
   input: fs.createReadStream("./test.txt")
 });

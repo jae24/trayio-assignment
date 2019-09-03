@@ -3,7 +3,7 @@
  */
 class RoomBuilder {
   /**
-   * Creates an instance of RoomBuilder
+   * Creates an instance of RoomBuilder.
    * @constructor
    * @param roomData An Object containing room data.
    */
@@ -15,7 +15,7 @@ class RoomBuilder {
   }
 
   /**
-   * Returns a grid representation of a room as a string
+   * Returns a grid representation of a room as a string.
    * @return The room as a string.
    */
   buildRoom() {
@@ -27,8 +27,7 @@ class RoomBuilder {
           // Change padding of numbers on axis depending on value
           if (this.dimensions[1] - i < 10) {
             gridRow += ` ${this.dimensions[1] - i} `;
-          }
-          if (this.dimensions[1] - i >= 10) {
+          } else if (this.dimensions[1] - i >= 10) {
             gridRow += `${this.dimensions[1] - i} `;
           }
         } else if (
@@ -48,7 +47,7 @@ class RoomBuilder {
       this.room += gridRow;
     }
 
-    // Simulate x-axis with last row by filling with numbers unless dirt is there
+    // Simulate x-axis with last row by filling with numbers unless it is a dirt location
     let lastRow = "";
     for (let i = 0; i <= this.dimensions[0]; i++) {
       if (this.dirtLocations.includes(`${i} 0`)) {
