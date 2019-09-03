@@ -1,3 +1,7 @@
+/*
+ * CLI Program that takes room data from a text file
+ */
+
 // Modules
 const readline = require("readline");
 const fs = require("fs");
@@ -21,10 +25,10 @@ textFileReader
     data.push(line);
   })
   .on("close", () => {
-    splitData(data);
+    main();
   });
 
-const splitData = txt => {
+const main = () => {
   // Dimensions are the first line of the text input
   let roomDimensions = data[0].split(" ").map(string => parseInt(string));
 
@@ -44,13 +48,6 @@ const splitData = txt => {
     dirtLocations = data.slice(2, data.length - 1);
   }
 
-  // Show the data from text file
-  console.log("\n------------ ROOM DATA --------------");
-  console.log(`Room Dimensions: ${roomDimensions[0]}x${roomDimensions[1]}`);
-  console.log(`Robot Starting Position: ${robotPosition}`);
-  console.log(`Dirt Locations: ${dirtLocations}`);
-  console.log("-------------------------------------");
-
   // Create a payload object for a RoomBuilder with data from text file
   const initialDataPayload = {
     roomDimensions,
@@ -59,16 +56,25 @@ const splitData = txt => {
     dirtLocations
   };
 
+  // Create a new VacuumBot to clean the room
+  const vacuumBot = new VacuumBot(initialDataPayload);
+  vacuumBot.cleanRoom();
+  // Get the results from VacuumBot (I.e. final pos and number of dirt mounds cleaned)
+  vacuumBot.showResults();
+
+  // Show the data from text file
+  console.log("\n------------ ROOM DATA --------------");
+  console.log(`Room Dimensions: ${roomDimensions[0]}x${roomDimensions[1]}`);
+  console.log(`Robot Starting Position: ${robotPosition}`);
+  console.log(`Dirt Locations: ${dirtLocations}`);
+  console.log("-------------------------------------");
+
   // Create a room with RoomBuilder before it is cleaned
   const roomBuilderBefore = new RoomBuilder(initialDataPayload);
   const roomBefore = roomBuilderBefore.buildRoom();
   console.log("\nBefore Cleaning");
   console.log(roomGridLegend + "\n");
   console.log(roomBefore);
-
-  // Create a new VacuumBot to clean the room
-  const vacuumBot = new VacuumBot(initialDataPayload);
-  vacuumBot.cleanRoom();
 
   // Create a new payload object for a RoomBuilder with new room data
   const afterDataPayload = {
@@ -84,7 +90,4 @@ const splitData = txt => {
   console.log("\nAfter Cleaning");
   console.log(roomGridLegend + "\n");
   console.log(roomAfter);
-
-  // Get the results from VacuumBot (I.e. final pos and number of dirt mounds cleaned)
-  vacuumBot.showResults();
 };
