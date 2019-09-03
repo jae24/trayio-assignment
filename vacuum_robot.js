@@ -58,16 +58,19 @@ const makeMoves = (directions) => {
                 }
                 break;
             case 'S':
-                if(robotPosition[1] - 1 >= 0){
+                if(robotPosition[1] - 1 > 0){
                     robotPosition[1]--;
                     cleanIfDirty(`${robotPosition[0]} ${robotPosition[1]}`);
                 }
                 break;
             case 'W':
-                if(robotPosition[0] - 1 >= 0){
+                if(robotPosition[0] - 1 > 0){
                     robotPosition[0]--;
                     cleanIfDirty(`${robotPosition[0]} ${robotPosition[1]}`);
                 }
+                break;
+            default:
+                console.log("Invalid Direction detected.");
                 break;
         }
     })
