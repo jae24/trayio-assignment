@@ -11,12 +11,12 @@ let robotPosition = [];
 let room = [];
 let numOfDirtMoundsCleaned = 0;
 
-const useTextFile = () => {
-    const readInterface = readline.createInterface({
+// Parses text file to extract room data
+const textFileReader = readline.createInterface({
         input: fs.createReadStream('./test.txt')
     });
     
-    readInterface.on('line', (line) => 
+    textFileReader.on('line', (line) => 
         { data.push(line) }
         )
         .on('close', () => {
@@ -25,7 +25,6 @@ const useTextFile = () => {
           makeMoves(directions);
           showResults();
         });
-}
 
 const splitData = (txt) =>{
     /* Split the data into the relevant components. */
@@ -159,5 +158,3 @@ const showResults = () => {
     console.log(`Final Robot Position: ${robotPosition[0]}, ${robotPosition[1]}`);
     console.log("Number of Dirt Mounds Cleaned: ", numOfDirtMoundsCleaned);
 }
-
-useTextFile();
