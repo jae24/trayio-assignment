@@ -30,15 +30,17 @@ const splitData = (txt) =>{
     roomDimensions = data[0].split(' ').map((string)=> parseInt(string));
 
     //Starting location is the second line of the text input.
-    robotPosition = data[data.length-2].split(' ').map((string)=> parseInt(string));
+    robotPosition = data[1].split(' ').map((string)=> parseInt(string));
  
     //Directions are always on the last line of the text input.
     directions = data[data.length-1].split('');
 
     //Dirt locations are between the second line and the last line (can be zero or many).
     if(data.length > 3){
-        dirtLocations = data.slice(1, data.length-2);
+        dirtLocations = data.slice(2, data.length-1);
     }
+
+    console.log(dirtLocations);
 }
 
 // Move the robot based on the directions data
@@ -58,13 +60,13 @@ const makeMoves = (directions) => {
                 }
                 break;
             case 'S':
-                if(robotPosition[1] - 1 > 0){
+                if(robotPosition[1] - 1 >= 0){
                     robotPosition[1]--;
                     cleanIfDirty(`${robotPosition[0]} ${robotPosition[1]}`);
                 }
                 break;
             case 'W':
-                if(robotPosition[0] - 1 > 0){
+                if(robotPosition[0] - 1 >= 0){
                     robotPosition[0]--;
                     cleanIfDirty(`${robotPosition[0]} ${robotPosition[1]}`);
                 }
@@ -78,6 +80,7 @@ const makeMoves = (directions) => {
 
 //If the current robot position is dirty, clean it, increment count, and remove from dirtLocations array.  
 const cleanIfDirty = (robotPosition) => {
+    console.log(robotPosition);
    if(dirtLocations.includes(robotPosition)){
        dirtLocations.splice(dirtLocations.indexOf(robotPosition), 1);
        numOfDirtMoundsCleaned++;
