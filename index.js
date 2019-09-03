@@ -1,6 +1,6 @@
 /*
- * CLI program that takes 
- * room dimensions, locations of dirt patches, a hoover location and driving instructions 
+ * CLI program that takes
+ * room dimensions, locations of dirt patches, a hoover location and driving instructions
  * as input and outputs the following:
  *  - The final hoover position (X, Y)
  *  - The number of patches of dirt the robot cleaned up
@@ -53,19 +53,32 @@ const main = () => {
     dirtLocations = data.slice(2, data.length - 1);
   }
 
-  // Create a payload object for a RoomBuilder with data from text file
-  const initialDataPayload = {
+  /**
+   * Create a payload object for a RoomBuilder with data from text file.
+   * Instances of VacuumBot update this data.
+   */
+  const dataPayload = {
     roomDimensions,
     robotPosition,
     directions,
     dirtLocations
   };
 
+  // Create a room with RoomBuilder before it is cleaned
+  const roomBuilderBefore = new RoomBuilder(dataPayload);
+  const roomBefore = roomBuilderBefore.buildRoom();
+
   // Create a new VacuumBot to clean the room
-  const vacuumBot = new VacuumBot(initialDataPayload);
+  const vacuumBot = new VacuumBot(dataPayload);
   vacuumBot.cleanRoom();
   // Get the results from VacuumBot (I.e. final pos and number of dirt mounds cleaned)
+  console.log("\n-------------- RESULTS --------------");
   vacuumBot.showResults();
+  console.log("-------------------------------------");
+
+  // Create a new room with RoomBuilder after the VacuumBot has finished cleaning
+  const roomBuilderAfter = new RoomBuilder(dataPayload);
+  const roomAfter = roomBuilderAfter.buildRoom();
 
   // Show the data from text file
   console.log("\n------------ ROOM DATA --------------");
@@ -74,24 +87,10 @@ const main = () => {
   console.log(`Dirt Locations: ${dirtLocations}`);
   console.log("-------------------------------------");
 
-  // Create a room with RoomBuilder before it is cleaned
-  const roomBuilderBefore = new RoomBuilder(initialDataPayload);
-  const roomBefore = roomBuilderBefore.buildRoom();
+  // Show room before and after
   console.log("\nBefore Cleaning");
   console.log(roomGridLegend + "\n");
   console.log(roomBefore);
-
-  // Create a new payload object for a RoomBuilder with new room data
-  const afterDataPayload = {
-    roomDimensions,
-    robotPosition: vacuumBot.position,
-    directions,
-    dirtLocations: vacuumBot.dirtLocations
-  };
-
-  // Get a new room after the VacuumBot has finished cleaning
-  const roomBuilderAfter = new RoomBuilder(afterDataPayload);
-  const roomAfter = roomBuilderAfter.buildRoom();
   console.log("\nAfter Cleaning");
   console.log(roomGridLegend + "\n");
   console.log(roomAfter);

@@ -17,32 +17,41 @@ class VacuumBot {
 
   /**
    * Cleans the room stored in memory while updating room data.
+   * Limiters for if conditions are boundaries of the room.
    */
   cleanRoom() {
     this.directions.forEach(move => {
-      switch (move) {
+      switch (move.toUpperCase()) {
         case "N":
           if (this.position[1] + 1 <= this.dimensions[1]) {
             this.position[1]++;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
+          } else {
+            console.log("Wall detected.");
           }
           break;
         case "E":
           if (this.position[0] + 1 <= this.dimensions[0]) {
             this.position[0]++;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
+          } else {
+            console.log("Wall detected.");
           }
           break;
         case "S":
           if (this.position[1] - 1 >= 0) {
             this.position[1]--;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
+          } else {
+            console.log("Wall detected.");
           }
           break;
         case "W":
           if (this.position[0] - 1 >= 0) {
             this.position[0]--;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
+          } else {
+            console.log("Wall detected.");
           }
           break;
         default:
@@ -68,7 +77,7 @@ class VacuumBot {
    */
   showResults() {
     console.log(
-      `\nFinal Robot Position: ${this.position[0]}, ${this.position[1]}`
+      `Final Robot Position: ${this.position[0]}, ${this.position[1]}`
     );
     console.log("Number of Dirt Mounds Cleaned: ", this.numOfDirtMoundsCleaned);
   }

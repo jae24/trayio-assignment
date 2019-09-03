@@ -11,7 +11,6 @@ class RoomBuilder {
     this.dimensions = roomData.roomDimensions;
     this.dirtLocations = roomData.dirtLocations;
     this.robotPosition = roomData.robotPosition;
-    this.room = "";
   }
 
   /**
@@ -19,6 +18,7 @@ class RoomBuilder {
    * @return The room as a string.
    */
   buildRoom() {
+    let room = ''
     for (let i = 0; i < this.dimensions[1]; i++) {
       let gridRow = "";
       for (let j = 0; j <= this.dimensions[0]; j++) {
@@ -29,7 +29,7 @@ class RoomBuilder {
             gridRow += ` ${this.dimensions[1] - i} `;
           } else if (this.dimensions[1] - i >= 10) {
             gridRow += `${this.dimensions[1] - i} `;
-          }
+          } // Check if a point is a dirt mound location or location of a VacuumBot
         } else if (
           this.dirtLocations.includes(`${j} ${this.dimensions[1] - i}`)
         ) {
@@ -44,10 +44,10 @@ class RoomBuilder {
         }
       }
       gridRow += "\n";
-      this.room += gridRow;
+      room += gridRow;
     }
 
-    // Simulate x-axis with last row by filling with numbers unless it is a dirt location
+    // Simulate an x-axis with last row by filling with numbers unless it is a dirt location
     let lastRow = "";
     for (let i = 0; i <= this.dimensions[0]; i++) {
       if (this.dirtLocations.includes(`${i} 0`)) {
@@ -61,8 +61,8 @@ class RoomBuilder {
         }
       }
     }
-    this.room += lastRow;
-    return this.room;
+    room += lastRow;
+    return room;
   }
 }
 
