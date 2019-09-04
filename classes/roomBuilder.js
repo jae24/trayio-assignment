@@ -18,7 +18,7 @@ class RoomBuilder {
    * @return The room as a string.
    */
   buildRoom() {
-    let room = ''
+    let room = "";
     for (let i = 0; i < this.dimensions[1]; i++) {
       let gridRow = "";
       for (let j = 0; j <= this.dimensions[0]; j++) {
@@ -35,8 +35,8 @@ class RoomBuilder {
         ) {
           gridRow += "(D)";
         } else if (
-          this.robotPosition[0] === parseInt(j) &&
-          this.robotPosition[1] === this.dimensions[1] - parseInt(i)
+          this.robotPosition[0] === j &&
+          this.robotPosition[1] === this.dimensions[1] - i
         ) {
           gridRow += "(R)";
         } else {
@@ -52,6 +52,8 @@ class RoomBuilder {
     for (let i = 0; i <= this.dimensions[0]; i++) {
       if (this.dirtLocations.includes(`${i} 0`)) {
         lastRow += `(D)`;
+      } else if (this.robotPosition[0] === i && this.robotPosition[1] === 0) {
+        lastRow += "(R)";
       } else {
         // Change padding of numbers on axis depending on value
         if (i < 10) {
