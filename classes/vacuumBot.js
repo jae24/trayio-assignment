@@ -26,36 +26,27 @@ class VacuumBot {
           if (this.position[1] + 1 <= this.dimensions[1]) {
             this.position[1]++;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
-          } else {
-            console.log("Wall detected.");
-          }
+          } 
           break;
         case "E":
           if (this.position[0] + 1 <= this.dimensions[0]) {
             this.position[0]++;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
-          } else {
-            console.log("Wall detected.");
-          }
+          } 
           break;
         case "S":
           if (this.position[1] - 1 >= 0) {
             this.position[1]--;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
-          } else {
-            console.log("Wall detected.");
-          }
+          } 
           break;
         case "W":
           if (this.position[0] - 1 >= 0) {
             this.position[0]--;
             this.cleanIfDirty(`${this.position[0]} ${this.position[1]}`);
-          } else {
-            console.log("Wall detected.");
-          }
+          } 
           break;
         default:
-          console.log("Invalid Direction detected.");
           break;
       }
     });
