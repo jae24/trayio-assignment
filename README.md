@@ -61,7 +61,8 @@ After Cleaning
 
 ```
 ## Additional Test Cases
-Additional test cases are provided in the test_cases directory. 
+Additional test cases are provided in the test_cases directory. Default test file is same as given in assignment prompt.  
+Copy the test case text file contents into test.txt in the root directory to test. 
 
 ## Notes
 Graphs for rooms may become distorted if room size is exceedingly large.
