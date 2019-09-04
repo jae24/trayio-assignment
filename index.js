@@ -1,13 +1,3 @@
-/*
- * CLI program that takes
- * room dimensions, locations of dirt patches, a hoover location and driving instructions
- * as input and outputs the following:
- *  - The final hoover position (X, Y)
- *  - The number of patches of dirt the robot cleaned up
- *  - Graphical representations of rooms before and after being cleaned by the robot
- * @author Jae Park
- */
-
 // Modules
 const readline = require("readline");
 const fs = require("fs");
@@ -79,13 +69,6 @@ const main = () => {
   // Create a new room with RoomBuilder after the VacuumBot has finished cleaning
   const roomBuilderAfter = new RoomBuilder(dataPayload);
   const roomAfter = roomBuilderAfter.buildRoom();
-
-  // Show the data from text file
-  console.log("\n------------ ROOM DATA --------------");
-  console.log(`Room Dimensions: ${roomDimensions[0]}x${roomDimensions[1]}`);
-  console.log(`Robot Starting Position: ${robotPosition}`);
-  console.log(`Dirt Locations: ${dirtLocations}`);
-  console.log("-------------------------------------");
 
   // Show room before and after
   console.log("\nBefore Cleaning");
