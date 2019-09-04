@@ -18,10 +18,10 @@ Open a terminal in the root directory of the project and run
 $ node index
 ```
 
-## Examples
+## Example Run
 
+test.txt:
 ```
-Input:
 5 5
 1 2
 1 0
@@ -31,7 +31,6 @@ NNESEESWNWW
 ```
 
 ```
-Run:
 $ node index
 
 -------------- RESULTS --------------
