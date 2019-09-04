@@ -1,4 +1,4 @@
-# TrayIO Assignment
+# tray.io Assignment
 
 CLI program written in NodeJS that processes text files containing 
 room dimensions, starting location of a robot vacuum, locations of dirt inside the room and driving directions for the robot.
